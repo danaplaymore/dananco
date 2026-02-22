@@ -733,8 +733,12 @@ capabilityCards.forEach((card, i) => {
 
       <div class="contact-info">
         <p class="contact-name fade-item">박단아 CEO</p>
-        <p class="contact-link fade-item">danaplaymore@gmail.com</p>
-        <p class="contact-link fade-item">010.9999.8751</p>
+        <p class="contact-link fade-item">
+  <a href="mailto:danaplaymore@gmail.com">danaplaymore@gmail.com</a>
+</p>
+<p class="contact-link fade-item">
+  <a href="tel:01099998751">010.9999.8751</a>
+</p>
       </div>
     </div>
 
@@ -870,6 +874,34 @@ capabilityCards.forEach((card, i) => {
     margin-top: 60px;
   }
 }
+/* ===== CONTACT LINK STYLE FORCE FIX ===== */
+.final-contact a,
+.final-contact a:link,
+.final-contact a:visited,
+.final-contact a:hover,
+.final-contact a:active {
+  color: inherit !important;     /* 🔥 파란색 완전 제거 */
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+<style>
+/* ===== FINAL SECTION BASE ===== */
+.final-section {
+  background: #251605;
+  color: #FF76B6;
+}
+
+/* ... 중간 생략 ... */
+
+@media (max-width: 900px) {
+  .final-why {
+    padding: 140px 24px 120px;
+  }
+
+  /* ... */
+}
+</style>
 </style>
 
 <!-- ===== GSAP ===== -->
