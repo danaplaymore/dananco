@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ===== FAVICON ===== -->
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/favicon.png">
+  <meta charset="UTF-8" />
+  <title>Dana&Co.</title>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root {
+      --main: #251605;
+      --point: #FF76B6;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--main);
+      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", sans-serif;
+    }
+
+    /* ===== HEADER ===== */
+    .site-header {
+      min-height: 100vh;
+      background: var(--main);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+    }
+
+    /* 로고 */
+    .logo-wrap {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .logo-wrap img {
+      width: 80%;
+      max-width: 1400px;
+      display: block;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    /* 텍스트 */
+    .header-text {
+      margin-top: 40px;
+      color: var(--point);
+      text-align: center;
+      max-width: 1000px;
+    }
+
+    .header-text p {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    /* 첫 문장 */
+    .line-bold {
+      font-weight: 700;
+      font-size: clamp(28px, 3.5vw, 35px);
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    /* 두 번째 문장 */
+    .line-light {
+      font-weight: 300;
+      font-size: clamp(16px, 1.8vw, 24px);
+      line-height: 1.3;
+    }
+
+    .mobile-break {
+      display: none;
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 768px) {
+      .site-header {
+        padding: 24px;
+      }
+
+      .header-text {
+        margin-top: 28px;
+      }
+
+      .mobile-break {
+        display: inline;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="logo-wrap">
+      <img src="logo_dananco.png" alt="Dana&Co Logo" />
+    </div>
+
+    <div class="header-text">
+      <p class="line-bold">
+        Driven by values, defined by experience of Dana Park.
+      </p>
+      <p class="line-light">
+        “Explore what excites us, Build what is needed,<br class="mobile-break">
+        Protect what is right.”
+      </p>
+    </div>
+  </header>
+
+  <!-- GSAP -->
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      gsap.to(".logo-wrap img", {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out"
+      });
+
+      gsap.to(".header-text p", {
+        opacity: 1,
+        y: 0,
+        duration: 0.9,
+        ease: "power2.out",
+        stagger: 0.15,
+        delay: 0.2
+      });
+    });
+  </script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+/* =========================
+   CAPABILITY GRID
+   핑크 박스 1 → 2 → 3 → 4
+========================= */
+const capabilityCards = document.querySelectorAll(".capability-card");
+
+capabilityCards.forEach((card, i) => {
+  gsap.fromTo(
+    card,
+    {
+      opacity: 0,
+      y: 24
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 0.9,
+      ease: "power2.out",
+      delay: i * 0.15,   // ⭐ 순차 등장 핵심
+      scrollTrigger: {
+        trigger: ".capability-grid",
+        start: "top 75%",
+        toggleActions: "play none none reverse"
+      }
+    }
+  );
+});
+</script>
+</body>
+</html>
+<!-- ================== PROJECT STACK (FINAL WITH LINKS) ================== -->
+<section class="project-stack" id="projectStack">
+
+  <div class="project-sticky">
+    <div class="project-frame">
+
+      <a href="https://www.hollabanana.com" target="_blank" class="project-card">
+        <img data-src="products/product_hollabanana.jpg">
+      </a>
+
+      <a href="https://www.painstudy.net" target="_blank" class="project-card">
+        <img data-src="products/product_painstudy.jpg">
+      </a>
+
+      <a href="https://smartstore.naver.com/tingla" target="_blank" class="project-card">
+        <img data-src="products/product_tingla.jpg">
+      </a>
+
+      <a href="https://www.instagram.com/monpoussy/" target="_blank" class="project-card">
+        <img data-src="products/product_monpoussy.jpg">
+      </a>
+
+      <a href="https://www.instagram.com/9to6_official/" target="_blank" class="project-card">
+        <img data-src="products/product_9to6.jpg">
+      </a>
+
+      <a href="https://drive.google.com/drive/folders/1ciOpzxzXrqWNbzLGxX5cdCUJycgp7FZc?usp=sharing" target="_blank" class="project-card">
+        <img data-src="products/product_gollala.jpg">
+      </a>
+
+      <!-- 링크 없음 -->
+      <div class="project-card no-link">
+        <img data-src="products/product_divebase.jpg">
+      </div>
+
+      <a href="https://www.instagram.com/100100ket" target="_blank" class="project-card">
+        <img data-src="products/product_100100ket.jpg">
+      </a>
+
+      <!-- 링크 없음 -->
+      <div class="project-card no-link">
+        <img data-src="products/product_ppppopup.jpg">
+      </div>
+
+      <!-- 링크 없음 -->
+      <div class="project-card no-link">
+        <img data-src="products/product_kickboost.jpg">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+/* ===== PROJECT STACK ===== */
+.project-stack {
+  background: #251605;
+  height: 1200vh;
+}
+
+.project-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-frame {
+  position: relative;
+  width: min(1200px, 90vw);
+  aspect-ratio: 16 / 9;
+}
+
+/* 카드 */
+.project-card {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateY(100px) scale(0.96);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+  pointer-events: none;
+}
+
+/* 클릭 불가 카드 */
+.project-card.no-link {
+  cursor: default;
+}
+
+/* 이미지 (DESKTOP) */
+.project-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+  background: #251605;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 900px) {
+
+  .project-stack {
+    height: 900vh;
+  }
+
+  .project-sticky {
+    align-items: flex-start;
+    padding-top: 40px;
+  }
+
+  .project-frame {
+    width: 92vw;
+    aspect-ratio: 4 / 5;
+  }
+
+  .project-card img {
+    object-fit: contain;
+    border-radius: 12px;
+  }
+}
+</style>
+
+<script>
+(() => {
+  const section = document.getElementById("projectStack");
+  const cards = Array.from(section.querySelectorAll(".project-card"));
+  const images = Array.from(section.querySelectorAll("img"));
+  const total = cards.length;
+
+  /* ===== 이미지 교체 (900px 이하 _s) ===== */
+  function updateImages() {
+    const isMobile = window.innerWidth <= 900;
+
+    images.forEach(img => {
+      const baseSrc = img.dataset.src;
+      if (!baseSrc) return;
+
+      img.src = isMobile
+        ? baseSrc.replace(".jpg", "_s.jpg")
+        : baseSrc;
+    });
+  }
+
+  /* ===== 카드 겹침 스크롤 ===== */
+  function updateCards() {
+    const rect = section.getBoundingClientRect();
+    const scrollable = section.offsetHeight - window.innerHeight;
+    const scrolled = Math.min(Math.max(-rect.top, 0), scrollable);
+    const progress = scrolled / scrollable;
+    const index = Math.min(total - 1, Math.floor(progress * total));
+
+    cards.forEach((card, i) => {
+      const offset = index - i;
+
+      if (offset >= 0 && offset < 4) {
+        card.style.opacity = 1;
+        card.style.pointerEvents = offset === 0 && !card.classList.contains("no-link")
+          ? "auto"
+          : "none";
+        card.style.zIndex = total - offset;
+        card.style.transform = `
+          translateY(${offset * -28}px)
+          scale(${1 - offset * 0.035})
+        `;
+      } else {
+        card.style.opacity = 0;
+        card.style.pointerEvents = "none";
+        card.style.zIndex = 0;
+      }
+    });
+  }
+
+  window.addEventListener("scroll", updateCards);
+  window.addEventListener("resize", () => {
+    updateImages();
+    updateCards();
+  });
+
+  updateImages();
+  updateCards();
+})();
+</script>
+<!-- ================== /PROJECT STACK ================== -->
+ <!-- ================== CAPABILITY GRID ================== -->
+<section class="capability-grid-section">
+  <div class="capability-grid">
+
+    <div class="capability-card">
+      <div class="capability-num">01</div>
+      <h3 class="capability-title">PRODUCT</h3>
+      <p class="capability-sub">Idea to Market</p>
+
+      <p class="capability-flow">
+        시장조사 → 브랜드 설정 → 제품 기획 → 제조 → 유통
+      </p>
+
+      <p class="capability-desc highlight">
+        아이디어를 실제 상품으로 만들고, 국내 및 해외 유통까지 연결합니다.
+      </p>
+    </div>
+
+    <div class="capability-card">
+      <div class="capability-num">02</div>
+      <h3 class="capability-title">IT PRODUCT</h3>
+      <p class="capability-sub">Concept to Launch</p>
+
+      <p class="capability-flow">
+        시장조사 → 브랜드 설정 → 서비스 기획 → 설계 → UI/UX → 개발 → 론칭
+      </p>
+
+      <p class="capability-desc highlight">
+        웹과 앱, 디지털 서비스를 구조부터 출시까지 설계합니다.
+      </p>
+    </div>
+
+    <div class="capability-card">
+      <div class="capability-num">03</div>
+      <h3 class="capability-title">CONSULTING</h3>
+      <p class="capability-sub">Brand & Business Strategy</p>
+
+      <p class="capability-flow">
+        브랜드 재해석 → 리브랜딩 → 채널 구축 → 운영 · 비즈니스 해부 → 전략 수립 → 투자 구조 설계
+      </p>
+
+      <p class="capability-desc highlight">
+        리브랜딩부터 투자 전략까지, 실행 가능한 구조를 만듭니다.
+      </p>
+    </div>
+
+    <div class="capability-card">
+      <div class="capability-num">04</div>
+      <h3 class="capability-title">SYSTEM</h3>
+      <p class="capability-sub">Execution Infrastructure</p>
+
+      <p class="capability-flow">
+        팝업 기획·디자인·제작·시공 · 올인원 마케팅 대행
+      </p>
+
+      <p class="capability-desc highlight">
+        직접 실행 가능한 자회사 네트워크로 전략을 현실로 만듭니다.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+/* ===== CAPABILITY GRID ===== */
+.capability-grid-section {
+  background: #251605;
+  padding: 160px 0 200px;
+}
+
+.capability-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 48px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* 카드 */
+.capability-card {
+  background: #FF76B6;
+  color: #251605;
+  padding: 40px 32px 44px;
+  display: flex;
+  flex-direction: column;
+  min-height: 440px;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.capability-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+/* 숫자 */
+.capability-num {
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+/* 타이틀 */
+.capability-title {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* 서브 */
+.capability-sub {
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 6px;
+  opacity: 0.85;
+}
+
+/* 플로우 */
+.capability-flow {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 22px;
+  margin-bottom: 28px;
+  opacity: 0.9;
+}
+
+/* ⭐ 마지막 강조 문장 – 절대 안 잘림 */
+.capability-desc.highlight {
+  font-size: clamp(16px, 1.1vw, 18px);
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.5;
+  margin-top: auto;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;        /* ⭐ 최대 2줄 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 900px) {
+  .capability-grid {
+    grid-template-columns: 1fr;
+    padding: 0 24px;
+  }
+
+  .capability-card {
+    min-height: auto;
+    padding: 36px 28px 40px;
+  }
+
+  .capability-num {
+    font-size: 52px;
+  }
+
+  .capability-title {
+    font-size: 24px;
+  }
+
+  .capability-desc.highlight {
+    -webkit-line-clamp: unset; /* 모바일은 자유 줄바꿈 */
+    font-size: 17px;
+  }
+}
+</style>
+<!-- ================== /CAPABILITY GRID ================== -->
+<!-- ================== FINAL WHY / CONTACT ================== -->
+<section class="final-section">
+
+  <!-- WHY -->
+  <div class="final-why fade-group">
+    <h2 class="final-title fade-item">👛 WHY Dana&Co.?</h2>
+
+    <div class="final-reasons">
+      <p class="fade-item">직접 브랜드를 운영합니다.</p>
+      <p class="fade-item">직접 유통을 경험했습니다.</p>
+      <p class="fade-item">직접 마케팅을 해봤습니다.</p>
+      <p class="fade-item">직접 망해보고, 다시 만들었습니다.</p>
+    </div>
+
+    <p class="final-conclusion fade-item">
+      그래서 전략이 현실적입니다.
+    </p>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="final-contact fade-group">
+    <div class="final-contact-inner">
+      <h2 class="contact-title fade-item">Let’s Build Something togather.</h2>
+
+      <div class="contact-info">
+        <p class="contact-name fade-item">박단아 CEO</p>
+        <p class="contact-link fade-item">danaplaymore@gmail.com</p>
+        <p class="contact-link fade-item">010.9999.8751</p>
+      </div>
+    </div>
+
+    <!-- COPYRIGHT -->
+    <div class="final-copyright fade-item">
+      Copyright©All right reserved by Dana Park.
+    </div>
+  </div>
+
+</section>
+
+<style>
+/* ===== FINAL SECTION BASE ===== */
+.final-section {
+  background: #251605;
+  color: #FF76B6;
+}
+
+/* ===== WHY ===== */
+.final-why {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 180px 48px 160px;
+}
+
+.final-title {
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 32px;
+}
+
+.final-reasons p {
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.45;
+  margin-bottom: 8px;
+}
+
+.final-conclusion {
+  margin-top: 28px;
+  font-size: 26px;
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* ===== CONTACT (PINK BG) ===== */
+.final-contact {
+  background: #FF76B6;
+  color: #251605;
+  padding: 160px 48px 80px;
+}
+
+.final-contact-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-title {
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 36px;
+}
+
+.contact-info p {
+  line-height: 1.45;
+  margin-bottom: 6px;
+}
+
+.contact-name {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.contact-link {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+/* ===== COPYRIGHT ===== */
+.final-copyright {
+  margin-top: 80px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 300;
+  opacity: 0.6;
+}
+
+/* ===== FADE BASE ===== */
+.fade-item {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 900px) {
+  .final-why {
+    padding: 140px 24px 120px;
+  }
+
+  .final-title {
+    font-size: 38px;
+    margin-bottom: 24px;
+  }
+
+  .final-reasons p {
+    font-size: 18px;
+  }
+
+  .final-conclusion {
+    font-size: 22px;
+  }
+
+  .final-contact {
+    padding: 120px 24px 60px;
+  }
+
+  .contact-title {
+    font-size: 38px;
+  }
+
+  .contact-name {
+    font-size: 20px;
+  }
+
+  .contact-link {
+    font-size: 18px;
+  }
+
+  .final-copyright {
+    font-size: 11px;
+    margin-top: 60px;
+  }
+}
+</style>
+
+<!-- ===== GSAP ===== -->
+<script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.utils.toArray(".fade-group").forEach(group => {
+  gsap.fromTo(
+    group.querySelectorAll(".fade-item"),
+    {
+      opacity: 0,
+      y: 20
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 1.1,
+      ease: "power2.out",
+      stagger: 0.14,
+      scrollTrigger: {
+        trigger: group,
+        start: "top 80%",
+        toggleActions: "play none none reverse"
+      }
+    }
+  );
+});
+</script>
+<!-- ================== /FINAL WHY / CONTACT ================== -->
