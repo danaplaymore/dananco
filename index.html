@@ -99,20 +99,112 @@
 
     /* ===== MOBILE ===== */
     @media (max-width: 768px) {
-      .site-header {
-        padding: 24px;
-      }
+  .site-header {
+    padding: 24px;
+  }
 
-      .header-text {
-        margin-top: 28px;
-      }
+  .header-text {
+    margin-top: 28px;
+  }
 
-      .mobile-break {
-        display: inline;
-      }
-    }
+  .mobile-break {
+    display: inline;
+  }
+
+  /* 🔧 여기 추가 */
+  .line-bold {
+    font-size: clamp(22px, 5.2vw, 26px);
+    line-height: 1.25;
+    word-break: keep-all;
+  }
+}
   </style>
 </head>
+<!-- ================== FLOATING SCROLL BUTTON ================== -->
+<div class="scroll-fab">
+  <button class="fab-btn fab-up" aria-label="Scroll to top">
+    ↑
+  </button>
+  <button class="fab-btn fab-down" aria-label="Scroll to bottom">
+    ↓
+  </button>
+</div>
+
+<style>
+/* ===== FLOATING BUTTON WRAP ===== */
+.scroll-fab {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 999;
+}
+
+/* ===== BUTTON ===== */
+.fab-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,118,182,0.9);
+  color: #251605;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease,
+    background 0.25s ease;
+}
+
+.fab-btn:hover {
+  transform: translateY(-2px);
+  background: #FF76B6;
+}
+
+.fab-btn:active {
+  transform: scale(0.92);
+}
+
+/* ===== MOBILE SIZE ===== */
+@media (max-width: 900px) {
+  .scroll-fab {
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .fab-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+}
+</style>
+
+<script>
+(() => {
+  const btnUp = document.querySelector(".fab-up");
+  const btnDown = document.querySelector(".fab-down");
+
+  btnUp.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+
+  btnDown.addEventListener("click", () => {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: "smooth"
+    });
+  });
+})();
+</script>
+<!-- ================== /FLOATING SCROLL BUTTON ================== -->
 
 <body>
 
@@ -186,7 +278,7 @@ capabilityCards.forEach((card, i) => {
 </script>
 </body>
 </html>
-<!-- ================== PROJECT STACK (FINAL WITH LINKS) ================== -->
+<!-- ================== PROJECT STACK (INDICATOR OVER IMAGE) ================== -->
 <section class="project-stack" id="projectStack">
 
   <div class="project-sticky">
@@ -232,6 +324,9 @@ capabilityCards.forEach((card, i) => {
         <img data-src="products/product_kickboost.jpg">
       </div>
 
+      <!-- 🔧 INDICATOR : 카드 위 오버레이 -->
+      <div class="project-indicator"></div>
+
     </div>
   </div>
 </section>
@@ -253,7 +348,7 @@ capabilityCards.forEach((card, i) => {
 }
 
 .project-frame {
-  position: relative;
+  position: relative; /* 🔑 기준점 */
   width: min(1200px, 90vw);
   aspect-ratio: 16 / 9;
 }
@@ -274,21 +369,49 @@ capabilityCards.forEach((card, i) => {
   cursor: default;
 }
 
-/* 이미지 (DESKTOP) */
 .project-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 0;
   box-shadow: 0 30px 60px rgba(0,0,0,0.35);
   background: #251605;
 }
 
+/* ===== INDICATOR (OVER IMAGE) ===== */
+.project-indicator {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 30; /* 카드 이미지 위 */
+  pointer-events: none;
+}
+
+.project-indicator span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,118,182,0.45);
+  opacity: 0.6;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease,
+    background 0.3s ease;
+}
+
+.project-indicator span.is-active {
+  background: #FF76B6;
+  transform: scale(1.8);
+  opacity: 1;
+}
+
 /* ===== MOBILE ===== */
 @media (max-width: 900px) {
-
   .project-stack {
-    height: 900vh;
+    height: 600vh;
   }
 
   .project-sticky {
@@ -296,19 +419,19 @@ capabilityCards.forEach((card, i) => {
     padding-top: 24px;
   }
 
-  /* 🔧 핵심 수정 1: 모바일 가로 98% */
   .project-frame {
-    width: 98vw;          /* ← 화면 거의 꽉 채움 */
+    width: 100vw;
     max-width: none;
     aspect-ratio: 4 / 6;
   }
 
-  /* 🔧 핵심 수정 2: 이미지도 프레임 꽉 차게 */
   .project-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* 이미지 잘림 없음 */
+    object-fit: contain;
     border-radius: 8px;
+  }
+
+  .project-indicator {
+    right: 12px;
   }
 }
 </style>
@@ -318,7 +441,15 @@ capabilityCards.forEach((card, i) => {
   const section = document.getElementById("projectStack");
   const cards = Array.from(section.querySelectorAll(".project-card"));
   const images = Array.from(section.querySelectorAll("img"));
+  const indicator = section.querySelector(".project-indicator");
   const total = cards.length;
+
+  /* ===== CREATE DOTS ===== */
+  for (let i = 0; i < total; i++) {
+    const dot = document.createElement("span");
+    indicator.appendChild(dot);
+  }
+  const dots = Array.from(indicator.children);
 
   function updateImages() {
     const isMobile = window.innerWidth <= 900;
@@ -359,6 +490,10 @@ capabilityCards.forEach((card, i) => {
         card.style.pointerEvents = "none";
         card.style.zIndex = 0;
       }
+    });
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("is-active", i === index);
     });
   }
 
@@ -548,6 +683,8 @@ capabilityCards.forEach((card, i) => {
     "#capabilityGrid .capability-card"
   );
 
+  const isMobile = window.innerWidth <= 900;
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach(entry => {
@@ -555,13 +692,15 @@ capabilityCards.forEach((card, i) => {
           const index = [...cards].indexOf(entry.target);
           setTimeout(() => {
             entry.target.classList.add("is-visible");
-          }, index * 180); // ⭐ 순차 딜레이
-        } else {
+          }, index * (isMobile ? 120 : 180));
+        }
+        // 🔧 모바일에서는 reverse 제거
+        else if (!isMobile) {
           entry.target.classList.remove("is-visible");
         }
       });
     },
-    { threshold: 0.25 }
+    { threshold: 0.35 } // 🔧 기존 0.25 → 안정화
   );
 
   cards.forEach(card => observer.observe(card));
@@ -756,7 +895,7 @@ gsap.utils.toArray(".fade-group").forEach(group => {
       scrollTrigger: {
         trigger: group,
         start: "top 80%",
-        toggleActions: "play none none reverse"
+        once: true   // 🔧 reverse 완전 제거
       }
     }
   );
