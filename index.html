@@ -1,30 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
   <meta charset="UTF-8" />
+  <title>Dana&Co.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Dana&Co.</title>
+  <!-- ===== FAVICON (FINAL) ===== -->
+  <link rel="icon" href="/pavicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/pavicon.png">
 
-  <!-- ================== FAVICON ================== -->
-  <link rel="icon" type="image/png" sizes="32x32" href="/pavicon.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/pavicon.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/pavicon.png">
-
-  <!-- ================== OPEN GRAPH ================== -->
+  <!-- ===== OPEN GRAPH ===== -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Dana&Co.">
-  <meta property="og:description" content="다나의 세계관이 브랜드로 현실화되는 창작 스튜디오">
+  <meta property="og:description" content="다나의 세계관이 브랜드로 현실화 되는 창작 스튜디오">
   <meta property="og:url" content="https://dananco.me">
   <meta property="og:image" content="https://dananco.me/og_dananco.jpg">
 
-  <!-- ================== TWITTER (겸용) ================== -->
+  <!-- ===== TWITTER / X ===== -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Dana&Co.">
-  <meta name="twitter:description" content="다나의 세계관이 브랜드로 현실화되는 창작 스튜디오">
+  <meta name="twitter:description" content="다나의 세계관이 브랜드로 현실화 되는 창작 스튜디오">
   <meta name="twitter:image" content="https://dananco.me/og_dananco.jpg">
 </head>
-<head>
   <style>
     :root {
       --main: #251605;
@@ -296,19 +293,22 @@ capabilityCards.forEach((card, i) => {
 
   .project-sticky {
     align-items: flex-start;
-    padding-top: 32px;
+    padding-top: 24px;
   }
 
-  /* 🔧 핵심 수정: 모바일 카드 가로폭 95% */
+  /* 🔧 핵심 수정 1: 모바일 가로 98% */
   .project-frame {
-    width: 95vw;          /* ← 화면의 약 95% */
-    max-width: none;      /* ← 데스크탑 제한 해제 */
+    width: 98vw;          /* ← 화면 거의 꽉 채움 */
+    max-width: none;
     aspect-ratio: 4 / 5;
   }
 
+  /* 🔧 핵심 수정 2: 이미지도 프레임 꽉 차게 */
   .project-card img {
-    object-fit: contain;  /* 이미지 잘림 방지 */
-    border-radius: 10px;  /* 모바일만 살짝 */
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* 이미지 잘림 없음 */
+    border-radius: 8px;
   }
 }
 </style>
