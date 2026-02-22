@@ -1,14 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <!-- ===== FAVICON ===== -->
-<link rel="icon" href="/favicon.png" type="image/png">
-<link rel="apple-touch-icon" href="/favicon.png">
+  <head>
   <meta charset="UTF-8" />
-  <title>Dana&Co.</title>
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>Dana&Co.</title>
+
+  <!-- ================== FAVICON ================== -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/pavicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/pavicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/pavicon.png">
+
+  <!-- ================== OPEN GRAPH ================== -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Dana&Co.">
+  <meta property="og:description" content="다나의 세계관이 브랜드로 현실화되는 창작 스튜디오">
+  <meta property="og:url" content="https://dananco.me">
+  <meta property="og:image" content="https://dananco.me/og_dananco.jpg">
+
+  <!-- ================== TWITTER (겸용) ================== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dana&Co.">
+  <meta name="twitter:description" content="다나의 세계관이 브랜드로 현실화되는 창작 스튜디오">
+  <meta name="twitter:image" content="https://dananco.me/og_dananco.jpg">
+</head>
+<head>
   <style>
     :root {
       --main: #251605;
@@ -203,7 +219,6 @@ capabilityCards.forEach((card, i) => {
         <img data-src="products/product_gollala.jpg">
       </a>
 
-      <!-- 링크 없음 -->
       <div class="project-card no-link">
         <img data-src="products/product_divebase.jpg">
       </div>
@@ -212,12 +227,10 @@ capabilityCards.forEach((card, i) => {
         <img data-src="products/product_100100ket.jpg">
       </a>
 
-      <!-- 링크 없음 -->
       <div class="project-card no-link">
         <img data-src="products/product_ppppopup.jpg">
       </div>
 
-      <!-- 링크 없음 -->
       <div class="project-card no-link">
         <img data-src="products/product_kickboost.jpg">
       </div>
@@ -260,7 +273,6 @@ capabilityCards.forEach((card, i) => {
   pointer-events: none;
 }
 
-/* 클릭 불가 카드 */
 .project-card.no-link {
   cursor: default;
 }
@@ -284,17 +296,19 @@ capabilityCards.forEach((card, i) => {
 
   .project-sticky {
     align-items: flex-start;
-    padding-top: 40px;
+    padding-top: 32px;
   }
 
+  /* 🔧 핵심 수정: 모바일 카드 가로폭 95% */
   .project-frame {
-    width: 92vw;
+    width: 95vw;          /* ← 화면의 약 95% */
+    max-width: none;      /* ← 데스크탑 제한 해제 */
     aspect-ratio: 4 / 5;
   }
 
   .project-card img {
-    object-fit: contain;
-    border-radius: 12px;
+    object-fit: contain;  /* 이미지 잘림 방지 */
+    border-radius: 10px;  /* 모바일만 살짝 */
   }
 }
 </style>
@@ -306,7 +320,6 @@ capabilityCards.forEach((card, i) => {
   const images = Array.from(section.querySelectorAll("img"));
   const total = cards.length;
 
-  /* ===== 이미지 교체 (900px 이하 _s) ===== */
   function updateImages() {
     const isMobile = window.innerWidth <= 900;
 
@@ -320,7 +333,6 @@ capabilityCards.forEach((card, i) => {
     });
   }
 
-  /* ===== 카드 겹침 스크롤 ===== */
   function updateCards() {
     const rect = section.getBoundingClientRect();
     const scrollable = section.offsetHeight - window.innerHeight;
@@ -333,9 +345,10 @@ capabilityCards.forEach((card, i) => {
 
       if (offset >= 0 && offset < 4) {
         card.style.opacity = 1;
-        card.style.pointerEvents = offset === 0 && !card.classList.contains("no-link")
-          ? "auto"
-          : "none";
+        card.style.pointerEvents =
+          offset === 0 && !card.classList.contains("no-link")
+            ? "auto"
+            : "none";
         card.style.zIndex = total - offset;
         card.style.transform = `
           translateY(${offset * -28}px)
@@ -360,19 +373,17 @@ capabilityCards.forEach((card, i) => {
 })();
 </script>
 <!-- ================== /PROJECT STACK ================== -->
- <!-- ================== CAPABILITY GRID ================== -->
-<section class="capability-grid-section">
+<!-- ================== CAPABILITY GRID ================== -->
+<section class="capability-grid-section" id="capabilityGrid">
   <div class="capability-grid">
 
     <div class="capability-card">
       <div class="capability-num">01</div>
       <h3 class="capability-title">PRODUCT</h3>
       <p class="capability-sub">Idea to Market</p>
-
       <p class="capability-flow">
         시장조사 → 브랜드 설정 → 제품 기획 → 제조 → 유통
       </p>
-
       <p class="capability-desc highlight">
         아이디어를 실제 상품으로 만들고, 국내 및 해외 유통까지 연결합니다.
       </p>
@@ -382,11 +393,9 @@ capabilityCards.forEach((card, i) => {
       <div class="capability-num">02</div>
       <h3 class="capability-title">IT PRODUCT</h3>
       <p class="capability-sub">Concept to Launch</p>
-
       <p class="capability-flow">
         시장조사 → 브랜드 설정 → 서비스 기획 → 설계 → UI/UX → 개발 → 론칭
       </p>
-
       <p class="capability-desc highlight">
         웹과 앱, 디지털 서비스를 구조부터 출시까지 설계합니다.
       </p>
@@ -396,11 +405,9 @@ capabilityCards.forEach((card, i) => {
       <div class="capability-num">03</div>
       <h3 class="capability-title">CONSULTING</h3>
       <p class="capability-sub">Brand & Business Strategy</p>
-
       <p class="capability-flow">
         브랜드 재해석 → 리브랜딩 → 채널 구축 → 운영 · 비즈니스 해부 → 전략 수립 → 투자 구조 설계
       </p>
-
       <p class="capability-desc highlight">
         리브랜딩부터 투자 전략까지, 실행 가능한 구조를 만듭니다.
       </p>
@@ -410,11 +417,9 @@ capabilityCards.forEach((card, i) => {
       <div class="capability-num">04</div>
       <h3 class="capability-title">SYSTEM</h3>
       <p class="capability-sub">Execution Infrastructure</p>
-
       <p class="capability-flow">
         팝업 기획·디자인·제작·시공 · 올인원 마케팅 대행
       </p>
-
       <p class="capability-desc highlight">
         직접 실행 가능한 자회사 네트워크로 전략을 현실로 만듭니다.
       </p>
@@ -439,7 +444,7 @@ capabilityCards.forEach((card, i) => {
   gap: 24px;
 }
 
-/* 카드 */
+/* 카드 (초기 상태만 추가 👇) */
 .capability-card {
   background: #FF76B6;
   color: #251605;
@@ -447,7 +452,17 @@ capabilityCards.forEach((card, i) => {
   display: flex;
   flex-direction: column;
   min-height: 440px;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transition:
+    transform 0.6s ease,
+    box-shadow 0.35s ease,
+    opacity 0.6s ease;
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.capability-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .capability-card:hover {
@@ -487,16 +502,15 @@ capabilityCards.forEach((card, i) => {
   opacity: 0.9;
 }
 
-/* ⭐ 마지막 강조 문장 – 절대 안 잘림 */
+/* 강조 문장 */
 .capability-desc.highlight {
   font-size: clamp(16px, 1.1vw, 18px);
   font-weight: 700;
   font-style: italic;
   line-height: 1.5;
   margin-top: auto;
-
   display: -webkit-box;
-  -webkit-line-clamp: 2;        /* ⭐ 최대 2줄 */
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -522,11 +536,37 @@ capabilityCards.forEach((card, i) => {
   }
 
   .capability-desc.highlight {
-    -webkit-line-clamp: unset; /* 모바일은 자유 줄바꿈 */
+    -webkit-line-clamp: unset;
     font-size: 17px;
   }
 }
 </style>
+
+<script>
+(() => {
+  const cards = document.querySelectorAll(
+    "#capabilityGrid .capability-card"
+  );
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const index = [...cards].indexOf(entry.target);
+          setTimeout(() => {
+            entry.target.classList.add("is-visible");
+          }, index * 180); // ⭐ 순차 딜레이
+        } else {
+          entry.target.classList.remove("is-visible");
+        }
+      });
+    },
+    { threshold: 0.25 }
+  );
+
+  cards.forEach(card => observer.observe(card));
+})();
+</script>
 <!-- ================== /CAPABILITY GRID ================== -->
 <!-- ================== FINAL WHY / CONTACT ================== -->
 <section class="final-section">
@@ -550,7 +590,7 @@ capabilityCards.forEach((card, i) => {
   <!-- CONTACT -->
   <div class="final-contact fade-group">
     <div class="final-contact-inner">
-      <h2 class="contact-title fade-item">Let’s Build Something togather.</h2>
+      <h2 class="contact-title fade-item">Let’s Build Something Togather.</h2>
 
       <div class="contact-info">
         <p class="contact-name fade-item">박단아 CEO</p>
