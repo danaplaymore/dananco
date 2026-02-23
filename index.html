@@ -483,8 +483,8 @@ targetIndex = Math.min(total - 1, progress * total);
 
 const isMobile = window.innerWidth <= 900;
 
-const dampingMobile = 0.025;  // 손 스크롤
-const dampingPC = 0.035;      // 휠 스크롤 (아주 약한 완충)
+const dampingMobile = 0.03;  // 손 스크롤
+const dampingPC = 0.05;      // 휠 스크롤 (아주 약한 완충)
 
 if (isMobile) {
   currentIndex += (targetIndex - currentIndex) * dampingMobile;
