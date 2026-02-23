@@ -35,10 +35,14 @@
     }
 
     body {
-      background: var(--main);
-      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", sans-serif;
-    }
+  background: var(--main);
+  font-family: -apple-system, BlinkMacSystemFont, "Pretendard", sans-serif;
+  overscroll-behavior: none;
+}
 
+html, body {
+  touch-action: pan-y;
+}
     /* ===== HEADER ===== */
     .site-header {
       min-height: 100vh;
@@ -479,8 +483,8 @@ targetIndex = Math.min(total - 1, progress * total);
 
 const isMobile = window.innerWidth <= 900;
 
-const dampingMobile = 0.05;  // 손 스크롤
-const dampingPC = 0.08;      // 휠 스크롤 (아주 약한 완충)
+const dampingMobile = 0.025;  // 손 스크롤
+const dampingPC = 0.035;      // 휠 스크롤 (아주 약한 완충)
 
 if (isMobile) {
   currentIndex += (targetIndex - currentIndex) * dampingMobile;
@@ -563,26 +567,29 @@ const index = Math.round(currentIndex);
     </div>
 
     <!-- 02 IT PRODUCT -->
-    <div class="capability-card">
-      <div class="capability-num">02</div>
-      <h3 class="capability-title">IT PRODUCT</h3>
-      <p class="capability-sub">Concept to Launch</p>
-      <p class="capability-flow">
-        시장조사 → 브랜드 설정 → 서비스 기획 → 설계 → UI/UX → 개발 → 론칭
-      </p>
-      <p class="capability-desc highlight">
-        웹과 앱, 디지털 서비스를 구조부터 출시까지 설계합니다.
-      </p>
+<div class="capability-card">
+  <div class="capability-num">02</div>
+  <h3 class="capability-title">IT PRODUCT</h3>
+  <p class="capability-sub">Concept to Launch</p>
+  <p class="capability-flow">
+    시장조사 → 브랜드 설정 → 서비스 기획 → 설계 → UI/UX → 개발 → 론칭
+  </p>
+  <p class="capability-desc highlight">
+    웹과 앱, 디지털 서비스를 구조부터 출시까지 설계합니다.
+  </p>
 
-      <div class="capability-refe">
-        <div class="no-link">
-          <img src="refe/refe_gollala.png">
-        </div>
-        <div class="no-link">
-          <img src="refe/refe_divebase.png">
-        </div>
-      </div>
+  <div class="capability-refe">
+    <!-- ✅ gollala : 링크 연결 -->
+    <a href="https://drive.google.com/drive/folders/1ciOpzxzXrqWNbzLGxX5cdCUJycgp7FZc?usp=sharing" target="_blank">
+      <img src="refe/refe_gollala.png">
+    </a>
+
+    <!-- divebase : 링크 없음 -->
+    <div class="no-link">
+      <img src="refe/refe_divebase.png">
     </div>
+  </div>
+</div>
 
     <!-- 03 CONSULTING -->
     <div class="capability-card">
