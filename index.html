@@ -639,7 +639,7 @@ const index = Math.round(currentIndex);
 </section>
 
 <style>
-/* ===== 기존 스타일 ===== */
+/* ===== BASE ===== */
 .capability-grid-section {
   background: #251605;
   padding: 160px 0 200px;
@@ -654,6 +654,7 @@ const index = Math.round(currentIndex);
   gap: 24px;
 }
 
+/* ===== CARD ===== */
 .capability-card {
   background: #FF76B6;
   color: #251605;
@@ -661,8 +662,7 @@ const index = Math.round(currentIndex);
   display: flex;
   flex-direction: column;
   min-height: 440px;
-  cursor: pointer;
-  transition: transform 0.6s ease, box-shadow 0.35s ease, background 0.35s ease;
+  transition: transform 0.6s ease, box-shadow 0.35s ease;
   opacity: 0;
   transform: translateY(40px);
 }
@@ -673,13 +673,9 @@ const index = Math.round(currentIndex);
 }
 
 .capability-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-6px);
   box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-}
-
-/* ACTIVE */
-.capability-card.is-active {
-  background: #ffffff;
+  cursor: default;
 }
 
 /* ===== TEXT ===== */
@@ -714,16 +710,12 @@ const index = Math.round(currentIndex);
   margin-top: auto;
 }
 
-/* ===== REFERENCE ===== */
+/* ===== REFERENCE (항상 보이게) ===== */
 .capability-refe {
   margin-top: 28px;
-  display: none;
+  display: flex;
   gap: 18px;
   flex-wrap: wrap;
-}
-
-.capability-card.is-active .capability-refe {
-  display: flex;
 }
 
 .capability-refe a,
@@ -739,7 +731,7 @@ const index = Math.round(currentIndex);
 }
 
 .capability-refe a:hover {
-  transform: scale(1.08);
+  transform: scale(1.06);
 }
 
 .capability-refe img {
@@ -748,7 +740,7 @@ const index = Math.round(currentIndex);
   object-fit: contain;
 }
 
-/* MOBILE */
+/* ===== MOBILE ===== */
 @media (max-width: 900px) {
   .capability-grid {
     grid-template-columns: 1fr;
@@ -768,7 +760,6 @@ const index = Math.round(currentIndex);
   const cards = document.querySelectorAll("#capabilityGrid .capability-card");
   const isMobile = window.innerWidth <= 900;
 
-  /* 등장 애니메이션 */
   const observer = new IntersectionObserver(
     entries => {
       entries.forEach(entry => {
@@ -786,18 +777,6 @@ const index = Math.round(currentIndex);
   );
 
   cards.forEach(card => observer.observe(card));
-
-  /* 토글 */
-  cards.forEach(card => {
-    card.addEventListener("click", () => {
-      if (card.classList.contains("is-active")) {
-        card.classList.remove("is-active");
-      } else {
-        cards.forEach(c => c.classList.remove("is-active"));
-        card.classList.add("is-active");
-      }
-    });
-  });
 })();
 </script>
 <!-- ================== /CAPABILITY GRID ================== -->
