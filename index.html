@@ -21,7 +21,7 @@
   <meta name="twitter:title" content="Dana&Co.">
   <meta name="twitter:description" content="다나의 세계관이 브랜드로 현실화 되는 창작 스튜디오">
   <meta name="twitter:image" content="https://dananco.me/og_dananco.jpg">
-</head>
+
   <style>
     :root {
       --main: #251605;
@@ -229,7 +229,6 @@ html, body {
   </header>
 
   <!-- GSAP -->
-  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
   <script>
     window.addEventListener("DOMContentLoaded", () => {
       gsap.to(".logo-wrap img", {
@@ -289,23 +288,23 @@ capabilityCards.forEach((card, i) => {
     <div class="project-frame">
 
       <a href="https://www.hollabanana.com" target="_blank" class="project-card">
-        <img data-src="products/product_hollabanana.jpg">
+        <img data-src="products/product_hollabanana.jpg" loading="lazy">
       </a>
 
       <a href="https://www.painstudy.net" target="_blank" class="project-card">
-        <img data-src="products/product_painstudy.jpg">
+        <img data-src="products/product_painstudy.jpg" loading="lazy">
       </a>
 
       <a href="https://smartstore.naver.com/tingla" target="_blank" class="project-card">
-        <img data-src="products/product_tingla.jpg">
+        <img data-src="products/product_tingla.jpg" loading="lazy">
       </a>
 
       <a href="https://www.instagram.com/monpoussy/" target="_blank" class="project-card">
-        <img data-src="products/product_monpoussy.jpg">
+        <img data-src="products/product_monpoussy.jpg" loading="lazy">
       </a>
 
       <a href="https://www.instagram.com/9to6_official/" target="_blank" class="project-card">
-        <img data-src="products/product_9to6.jpg">
+        <img data-src="products/product_9to6.jpg" loading="lazy">
       </a>
 
       <a href="https://drive.google.com/drive/folders/1ciOpzxzXrqWNbzLGxX5cdCUJycgp7FZc?usp=sharing" target="_blank" class="project-card">
@@ -313,19 +312,19 @@ capabilityCards.forEach((card, i) => {
       </a>
 
       <div class="project-card no-link">
-        <img data-src="products/product_divebase.jpg">
+        <img data-src="products/product_divebase.jpg" loading="lazy">
       </div>
 
       <a href="https://www.instagram.com/100100ket" target="_blank" class="project-card">
-        <img data-src="products/product_100100ket.jpg">
+        <img data-src="products/product_100100ket.jpg" loading="lazy">
       </a>
 
       <a href="https://www.instagram.com/bizkimdosa" target="_blank" class="project-card">
-        <img data-src="products/product_bizkimdosa.jpg">
+        <img data-src="products/product_bizkimdosa.jpg" loading="lazy">
       </a>
 
       <div class="project-card no-link">
-        <img data-src="products/product_ppppopup.jpg">
+        <img data-src="products/product_ppppopup.jpg" loading="lazy">
       </div>
 
       <div class="project-card no-link">
@@ -995,7 +994,6 @@ function updateCards() {
 
   /* ... */
 }
-</style>
 </style>
 
 <!-- ===== GSAP ===== -->
