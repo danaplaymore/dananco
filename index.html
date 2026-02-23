@@ -29,6 +29,53 @@
   <meta name="twitter:image" content="https://dananco.me/og_dananco.jpg">
 
   <style>
+    
+html {
+  scroll-behavior: smooth;
+}
+    /* ===== FIXED TOP BAR ===== */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  background: #FF76B6; /* 핑크 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+
+  /* 처음엔 안 보이게 */
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.topbar.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* 로고 색 보정 (핑크 → 갈색처럼) */
+.topbar-logo {
+  height: 24px;
+  filter: brightness(0) saturate(100%)
+          invert(16%)
+          sepia(40%)
+          saturate(900%)
+          hue-rotate(350deg)
+          brightness(90%)
+          contrast(95%);
+}
+
+/* ===== SPACER ===== */
+.topbar-spacer {
+  height: 64px;
+}
     :root {
       --main: #251605;
       --point: #FF76B6;
@@ -108,6 +155,19 @@ html, body {
     }
 
     /* ===== MOBILE ===== */
+    @media (max-width: 900px) {
+  .topbar {
+    height: 56px;
+  }
+
+  .topbar-spacer {
+    height: 56px;
+  }
+
+  .project-sticky {
+    top: 56px;
+  }
+}
     @media (max-width: 768px) {
   .site-header {
     padding: 24px;
@@ -217,7 +277,16 @@ html, body {
 <!-- ================== /FLOATING SCROLL BUTTON ================== -->
 
 <body>
+  <div id="top"></div>
+<!-- ===== FIXED TOP BAR ===== -->
+<div class="topbar">
+  <a href="#top" class="topbar-link">
+    <img src="logo_dananco.png" alt="Dana&Co" class="topbar-logo" />
+  </a>
+</div>
 
+<!-- 공간 보정용 (겹침 방지) -->
+<div class="topbar-spacer"></div>
   <header class="site-header">
     <div class="logo-wrap">
       <img src="logo_dananco.png" alt="Dana&Co Logo" />
@@ -284,6 +353,22 @@ capabilityCards.forEach((card, i) => {
     }
   );
 });
+</script>
+<script>
+(() => {
+  const topbar = document.querySelector(".topbar");
+
+  function toggleTopbar() {
+    if (window.scrollY > 10) {
+      topbar.classList.add("is-visible");
+    } else {
+      topbar.classList.remove("is-visible");
+    }
+  }
+
+  window.addEventListener("scroll", toggleTopbar);
+  toggleTopbar(); // 새로고침 시 위치 체크
+})();
 </script>
 </body>
 </html>
@@ -353,7 +438,7 @@ capabilityCards.forEach((card, i) => {
 
 .project-sticky {
   position: sticky;
-  top: 0;
+  top: 64px;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -429,7 +514,7 @@ capabilityCards.forEach((card, i) => {
 
   .project-sticky {
     align-items: flex-start;
-    padding-top: 24px;
+    padding-top: 56px;
   }
 
   .project-frame {
@@ -485,9 +570,11 @@ function updateCards() {
   const isMobile = window.innerWidth <= 900;
 
   // 🔥 모바일에서 scrollable 강제 보정
-  const scrollable = isMobile
-    ? window.innerHeight * (total * 0.9)
-    : section.offsetHeight - window.innerHeight;
+  const TOPBAR_HEIGHT = window.innerWidth <= 900 ? 56 : 64;
+
+const scrollable = isMobile
+  ? (window.innerHeight - TOPBAR_HEIGHT) * (total * 0.9)
+  : section.offsetHeight - (window.innerHeight - TOPBAR_HEIGHT);
 
   const scrolled = Math.min(
     Math.max(-rect.top, 0),
