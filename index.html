@@ -419,7 +419,7 @@ capabilityCards.forEach((card, i) => {
 /* ===== MOBILE ===== */
 @media (max-width: 900px) {
   .project-stack {
-    height: 600vh;
+    height: calc(100vh * 11); /* 🔥 기존 600vh → 더 여유 있게 */
   }
 
   .project-sticky {
@@ -474,51 +474,65 @@ capabilityCards.forEach((card, i) => {
 let currentIndex = 0;
 let targetIndex = 0;
 
-  function updateCards() {
-    const rect = section.getBoundingClientRect();
-    const scrollable = section.offsetHeight - window.innerHeight;
-    const scrolled = Math.min(Math.max(-rect.top, 0), scrollable);
-    const progress = scrolled / scrollable;
-targetIndex = Math.min(total - 1, progress * total);
+function updateCards() {
+  const rect = section.getBoundingClientRect();
 
-const isMobile = window.innerWidth <= 900;
+  const isMobile = window.innerWidth <= 900;
 
-const dampingMobile = 0.03;  // 손 스크롤
-const dampingPC = 0.05;      // 휠 스크롤 (아주 약한 완충)
+  // 🔥 모바일에서 scrollable 강제 보정
+  const scrollable = isMobile
+    ? window.innerHeight * (total * 0.9)
+    : section.offsetHeight - window.innerHeight;
 
-if (isMobile) {
-  currentIndex += (targetIndex - currentIndex) * dampingMobile;
-} else {
-  currentIndex += (targetIndex - currentIndex) * dampingPC;
+  const scrolled = Math.min(
+    Math.max(-rect.top, 0),
+    scrollable
+  );
+
+  const progress = scrolled / scrollable;
+
+  // 🔧 속도 보정
+  const speedFactor = isMobile ? 1 : 1;
+
+  targetIndex = Math.min(
+    total - 1,
+    progress * total * speedFactor
+  );
+
+  const dampingMobile = 0.02;
+  const dampingPC = 0.05;
+
+  currentIndex +=
+    (targetIndex - currentIndex) *
+    (isMobile ? dampingMobile : dampingPC);
+
+  const index = Math.round(currentIndex);
+
+  cards.forEach((card, i) => {
+    const offset = index - i;
+
+    if (offset >= 0 && offset < 4) {
+      card.style.opacity = 1;
+      card.style.pointerEvents =
+        offset === 0 && !card.classList.contains("no-link")
+          ? "auto"
+          : "none";
+      card.style.zIndex = total - offset;
+      card.style.transform = `
+        translateY(${offset * -28}px)
+        scale(${1 - offset * 0.035})
+      `;
+    } else {
+      card.style.opacity = 0;
+      card.style.pointerEvents = "none";
+      card.style.zIndex = 0;
+    }
+  });
+
+  dots.forEach((dot, i) => {
+    dot.classList.toggle("is-active", i === index);
+  });
 }
-
-const index = Math.round(currentIndex);
-
-    cards.forEach((card, i) => {
-      const offset = index - i;
-
-      if (offset >= 0 && offset < 4) {
-        card.style.opacity = 1;
-        card.style.pointerEvents =
-          offset === 0 && !card.classList.contains("no-link")
-            ? "auto"
-            : "none";
-        card.style.zIndex = total - offset;
-        card.style.transform = `
-          translateY(${offset * -28}px)
-          scale(${1 - offset * 0.035})
-        `;
-      } else {
-        card.style.opacity = 0;
-        card.style.pointerEvents = "none";
-        card.style.zIndex = 0;
-      }
-    });
-
-    dots.forEach((dot, i) => {
-      dot.classList.toggle("is-active", i === index);
-    });
-  }
 
   window.addEventListener("scroll", updateCards);
   window.addEventListener("resize", () => {
