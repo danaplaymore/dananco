@@ -316,6 +316,10 @@ capabilityCards.forEach((card, i) => {
         <img data-src="products/product_100100ket.jpg">
       </a>
 
+      <a href="https://www.instagram.com/bizkimdosa" target="_blank" class="project-card">
+        <img data-src="products/product_bizkimdosa.jpg">
+      </a>
+
       <div class="project-card no-link">
         <img data-src="products/product_ppppopup.jpg">
       </div>
@@ -463,13 +467,28 @@ capabilityCards.forEach((card, i) => {
         : baseSrc;
     });
   }
+let currentIndex = 0;
+let targetIndex = 0;
 
   function updateCards() {
     const rect = section.getBoundingClientRect();
     const scrollable = section.offsetHeight - window.innerHeight;
     const scrolled = Math.min(Math.max(-rect.top, 0), scrollable);
     const progress = scrolled / scrollable;
-    const index = Math.min(total - 1, Math.floor(progress * total));
+targetIndex = Math.min(total - 1, progress * total);
+
+const isMobile = window.innerWidth <= 900;
+
+const dampingMobile = 0.05;  // 손 스크롤
+const dampingPC = 0.08;      // 휠 스크롤 (아주 약한 완충)
+
+if (isMobile) {
+  currentIndex += (targetIndex - currentIndex) * dampingMobile;
+} else {
+  currentIndex += (targetIndex - currentIndex) * dampingPC;
+}
+
+const index = Math.round(currentIndex);
 
     cards.forEach((card, i) => {
       const offset = index - i;
@@ -512,6 +531,7 @@ capabilityCards.forEach((card, i) => {
 <section class="capability-grid-section" id="capabilityGrid">
   <div class="capability-grid">
 
+    <!-- 01 PRODUCT -->
     <div class="capability-card">
       <div class="capability-num">01</div>
       <h3 class="capability-title">PRODUCT</h3>
@@ -522,8 +542,27 @@ capabilityCards.forEach((card, i) => {
       <p class="capability-desc highlight">
         아이디어를 실제 상품으로 만들고, 국내 및 해외 유통까지 연결합니다.
       </p>
+
+      <div class="capability-refe">
+        <a href="https://www.hollabanana.com" target="_blank">
+          <img src="refe/refe_hollabanana.png">
+        </a>
+        <a href="https://www.painstudy.net" target="_blank">
+          <img src="refe/refe_painstudy.png">
+        </a>
+        <a href="https://smartstore.naver.com/tingla" target="_blank">
+          <img src="refe/refe_tingla.png">
+        </a>
+        <a href="https://www.instagram.com/monpoussy/" target="_blank">
+          <img src="refe/refe_monpoussy.png">
+        </a>
+        <a href="https://www.instagram.com/9to6_official/" target="_blank">
+          <img src="refe/refe_9to6.png">
+        </a>
+      </div>
     </div>
 
+    <!-- 02 IT PRODUCT -->
     <div class="capability-card">
       <div class="capability-num">02</div>
       <h3 class="capability-title">IT PRODUCT</h3>
@@ -534,37 +573,73 @@ capabilityCards.forEach((card, i) => {
       <p class="capability-desc highlight">
         웹과 앱, 디지털 서비스를 구조부터 출시까지 설계합니다.
       </p>
+
+      <div class="capability-refe">
+        <div class="no-link">
+          <img src="refe/refe_gollala.png">
+        </div>
+        <div class="no-link">
+          <img src="refe/refe_divebase.png">
+        </div>
+      </div>
     </div>
 
+    <!-- 03 CONSULTING -->
     <div class="capability-card">
       <div class="capability-num">03</div>
       <h3 class="capability-title">CONSULTING</h3>
       <p class="capability-sub">Brand & Business Strategy</p>
       <p class="capability-flow">
-        브랜드 재해석 → 리브랜딩 → 채널 구축 → 운영 · 비즈니스 해부 → 전략 수립 → 투자 구조 설계
+        <strong>리브랜딩</strong><br>
+        브랜드 재해석 → 리브랜딩 → 채널 구축 → 운영<br>
+        <strong>사업전략</strong><br>
+        비즈니스 해부 → 전략 수립 → 투자 구조 설계
       </p>
       <p class="capability-desc highlight">
         리브랜딩부터 투자 전략까지, 실행 가능한 구조를 만듭니다.
       </p>
+
+      <div class="capability-refe">
+        <a href="https://www.instagram.com/100100ket" target="_blank">
+          <img src="refe/refe_100100ket.png">
+        </a>
+        <a href="https://www.instagram.com/bizkimdosa" target="_blank">
+          <img src="refe/refe_bizkimdosa.png">
+        </a>
+      </div>
     </div>
 
+    <!-- 04 SYSTEM -->
     <div class="capability-card">
       <div class="capability-num">04</div>
       <h3 class="capability-title">SYSTEM</h3>
       <p class="capability-sub">Execution Infrastructure</p>
       <p class="capability-flow">
-        팝업 기획·디자인·제작·시공 · 올인원 마케팅 대행
+        <strong>ppppop up</strong><br>
+        팝업 기획·디자인·제작·시공사<br>
+        <strong>Kick Boost</strong><br>
+        올인원 마케팅 대행<br>
+        실행 자회사 2개 보유
       </p>
       <p class="capability-desc highlight">
         직접 실행 가능한 자회사 네트워크로 전략을 현실로 만듭니다.
       </p>
+
+      <div class="capability-refe">
+        <div class="no-link">
+          <img src="refe/refe_ppppopup.png">
+        </div>
+        <div class="no-link">
+          <img src="refe/refe_kickboost.png">
+        </div>
+      </div>
     </div>
 
   </div>
 </section>
 
 <style>
-/* ===== CAPABILITY GRID ===== */
+/* ===== 기존 스타일 ===== */
 .capability-grid-section {
   background: #251605;
   padding: 160px 0 200px;
@@ -579,7 +654,6 @@ capabilityCards.forEach((card, i) => {
   gap: 24px;
 }
 
-/* 카드 (초기 상태만 추가 👇) */
 .capability-card {
   background: #FF76B6;
   color: #251605;
@@ -587,10 +661,8 @@ capabilityCards.forEach((card, i) => {
   display: flex;
   flex-direction: column;
   min-height: 440px;
-  transition:
-    transform 0.6s ease,
-    box-shadow 0.35s ease,
-    opacity 0.6s ease;
+  cursor: pointer;
+  transition: transform 0.6s ease, box-shadow 0.35s ease, background 0.35s ease;
   opacity: 0;
   transform: translateY(40px);
 }
@@ -605,105 +677,127 @@ capabilityCards.forEach((card, i) => {
   box-shadow: 0 20px 40px rgba(0,0,0,0.25);
 }
 
-/* 숫자 */
+/* ACTIVE */
+.capability-card.is-active {
+  background: #ffffff;
+}
+
+/* ===== TEXT ===== */
 .capability-num {
   font-size: 64px;
   font-weight: 800;
-  line-height: 1;
   margin-bottom: 16px;
 }
 
-/* 타이틀 */
 .capability-title {
   font-size: 26px;
   font-weight: 800;
-  letter-spacing: -0.02em;
 }
 
-/* 서브 */
 .capability-sub {
   font-size: 15px;
-  font-weight: 500;
   margin-top: 6px;
   opacity: 0.85;
 }
 
-/* 플로우 */
 .capability-flow {
   font-size: 14px;
   line-height: 1.6;
   margin-top: 22px;
   margin-bottom: 28px;
-  opacity: 0.9;
 }
 
-/* 강조 문장 */
 .capability-desc.highlight {
   font-size: clamp(16px, 1.1vw, 18px);
   font-weight: 700;
   font-style: italic;
-  line-height: 1.5;
   margin-top: auto;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+}
+
+/* ===== REFERENCE ===== */
+.capability-refe {
+  margin-top: 28px;
+  display: none;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.capability-card.is-active .capability-refe {
+  display: flex;
+}
+
+.capability-refe a,
+.capability-refe .no-link {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
 }
 
-/* ===== MOBILE ===== */
+.capability-refe a:hover {
+  transform: scale(1.08);
+}
+
+.capability-refe img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
+/* MOBILE */
 @media (max-width: 900px) {
   .capability-grid {
     grid-template-columns: 1fr;
     padding: 0 24px;
   }
 
-  .capability-card {
-    min-height: auto;
-    padding: 36px 28px 40px;
-  }
-
-  .capability-num {
-    font-size: 52px;
-  }
-
-  .capability-title {
-    font-size: 24px;
-  }
-
-  .capability-desc.highlight {
-    -webkit-line-clamp: unset;
-    font-size: 17px;
+  .capability-refe a,
+  .capability-refe .no-link {
+    width: 64px;
+    height: 64px;
   }
 }
 </style>
 
 <script>
 (() => {
-  const cards = document.querySelectorAll(
-    "#capabilityGrid .capability-card"
-  );
-
+  const cards = document.querySelectorAll("#capabilityGrid .capability-card");
   const isMobile = window.innerWidth <= 900;
 
+  /* 등장 애니메이션 */
   const observer = new IntersectionObserver(
-    (entries) => {
+    entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const index = [...cards].indexOf(entry.target);
           setTimeout(() => {
             entry.target.classList.add("is-visible");
           }, index * (isMobile ? 120 : 180));
-        }
-        // 🔧 모바일에서는 reverse 제거
-        else if (!isMobile) {
+        } else if (!isMobile) {
           entry.target.classList.remove("is-visible");
         }
       });
     },
-    { threshold: 0.35 } // 🔧 기존 0.25 → 안정화
+    { threshold: 0.35 }
   );
 
   cards.forEach(card => observer.observe(card));
+
+  /* 토글 */
+  cards.forEach(card => {
+    card.addEventListener("click", () => {
+      if (card.classList.contains("is-active")) {
+        card.classList.remove("is-active");
+      } else {
+        cards.forEach(c => c.classList.remove("is-active"));
+        card.classList.add("is-active");
+      }
+    });
+  });
 })();
 </script>
 <!-- ================== /CAPABILITY GRID ================== -->
