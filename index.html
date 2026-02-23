@@ -29,10 +29,6 @@
   <meta name="twitter:image" content="https://dananco.me/og_dananco.jpg">
 
   <style>
-    
-html {
-  scroll-behavior: smooth;
-}
     /* ===== FIXED TOP BAR ===== */
 .topbar {
   position: fixed;
@@ -280,7 +276,7 @@ html, body {
   <div id="top"></div>
 <!-- ===== FIXED TOP BAR ===== -->
 <div class="topbar">
-  <a href="#top" class="topbar-link">
+  <a href="https://www.dananco.me" class="topbar-link">
     <img src="logo_dananco.png" alt="Dana&Co" class="topbar-logo" />
   </a>
 </div>
@@ -867,11 +863,18 @@ const scrollable = isMobile
   }
 }
 </style>
-
 <script>
 (() => {
   const cards = document.querySelectorAll("#capabilityGrid .capability-card");
   const isMobile = window.innerWidth <= 900;
+
+  // 🔥 모바일에서는 애니메이션 계산 자체 제거
+  if (isMobile) {
+    cards.forEach(card => {
+      card.classList.add("is-visible");
+    });
+    return;
+  }
 
   const observer = new IntersectionObserver(
     entries => {
@@ -880,8 +883,8 @@ const scrollable = isMobile
           const index = [...cards].indexOf(entry.target);
           setTimeout(() => {
             entry.target.classList.add("is-visible");
-          }, index * (isMobile ? 120 : 180));
-        } else if (!isMobile) {
+          }, index * 180);
+        } else {
           entry.target.classList.remove("is-visible");
         }
       });
@@ -892,6 +895,7 @@ const scrollable = isMobile
   cards.forEach(card => observer.observe(card));
 })();
 </script>
+
 <!-- ================== /CAPABILITY GRID ================== -->
 <!-- ================== FINAL WHY / CONTACT ================== -->
 <section class="final-section">
@@ -1112,7 +1116,7 @@ gsap.utils.toArray(".fade-group").forEach(group => {
       scrollTrigger: {
         trigger: group,
         start: "top 80%",
-        once: true   // 🔧 reverse 완전 제거
+        once: true
       }
     }
   );
